@@ -1,0 +1,10 @@
+**/.infrastructure
+**/.github
+**/prova
+.gitignore
+node_modules
+license.txt
+exports
+*.cache
+build
+.strapi-updater.json
