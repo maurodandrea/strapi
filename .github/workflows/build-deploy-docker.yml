@@ -2,7 +2,7 @@ name: 'pushdocker'
 
 on:
   push:
-    branches: [ "main2" ]
+    branches: [ "main" ]
     paths:
       - 'apps/*'
       - '.github/workflows/*'
