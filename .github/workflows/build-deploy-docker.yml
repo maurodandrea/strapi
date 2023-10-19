@@ -1,10 +1,10 @@
-name: 'pushdockerecr'
+name: 'pushdocker'
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main2" ]
     paths:
-      - 'strapi-v4/app/*'
+      - 'apps/*'
       - '.github/workflows/*'
 #  pull_request:
 ##    branches: '**'
