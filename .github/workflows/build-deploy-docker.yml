@@ -1,0 +1,104 @@
+name: 'pushdockerecr'
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'strapi-v4/app/*'
+      - '.github/workflows/*'
+#  pull_request:
+##    branches: '**'
+permissions:
+  contents: read
+
+jobs:
+    docker:
+      runs-on: ubuntu-latest
+
+      # Use the Bash  shell regardless  whether the GitHub Actions  runner is ubuntu-latest, macos-latest, or windows-latest
+      defaults:
+        run:
+          shell: bash
+
+      steps:
+      
+        - name: Set up QEMU
+          uses: docker/setup-qemu-action@v3
+
+        - name: Set up Docker Buildx
+          uses: docker/setup-buildx-action@v3
+
+        - name: Configure AWS Credentials
+          uses: aws-actions/configure-aws-credentials@v3
+          with:
+            #role-to-assume: arn:aws:iam::713024823233:role/githubrole
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: eu-south-1
+
+        - name: Checkout
+          uses: actions/checkout@v4
+
+        #- name: Upload S3 copy env file
+        #  run: aws s3 cp strapi-v4/app/.env s3://media-library-s3-strapi-713024823233
+          #with:
+          #  path: strapi-v4/app
+        - run: docker build -t strapi:latest .
+
+        # Checkout the repository to the GitHub  Actions runner   b   
+         #- name: Checkout s
+        #  uses: actions/checkout@v3
+        #- name: Build and push
+        #  uses: docker/build-push-action@v5 
+        #  with:
+         #  context: "{{defaultContext}}:.infrastructure/docker"    
+         #  push: true
+        #   tags: user/app:latest
+        # Checks that all Terrafor m  configuration files adhere to a canonical format  
+        
+        
+       # - name: verifica path
+       #   run: ls
+
+        #- name: set dir
+        #  run: cd strapi-multitenancy-opzione-2 | docker build -t strapi-website:latest .
+
+       # - name: dockerbuild
+         ## run: docker build -t strapi-website .
+         ## run: docker build --build-arg NODE_ENV=production --build-arg STRAPI_URL=cms-load-balancer-1433109178.eu-south-1.elb.amazonaws.com -t strapi-website:latest -f Dockerfile.prod .
+       #   run: docker build -t strapi-website:latest . 
+
+        - name: dockertag
+          run: docker tag strapi:latest 713024823233.dkr.ecr.eu-south-1.amazonaws.com/strapi:latest
+
+        - name: Login to ECR
+          uses: docker/login-action@v3
+          with:
+              registry: 713024823233.dkr.ecr.eu-south-1.amazonaws.com
+              username: ${{ secrets.AWS_ACCESS_KEY_ID }}
+              password: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+        #- name: awslogin 
+        #  run:  aws ecr get-login-password --region eu-south-1 | docker login --username AWS --password-stdin 713024823233.dkr.ecr.eu-south-1.amazonaws.com
+
+        - name: dockerpush
+          run: aws ecr get-login-password --region eu-south-1 | docker push 713024823233.dkr.ecr.eu-south-1.amazonaws.com/strapi:latest
+          #run: aws ecr get-login-password --region eu-south-1 713024823233.dkr.ecr.eu-south-1.amazonaws.com | docker push 713024823233.dkr.ecr.eu-south-1.amazonaws.com/strapi-website:latest
+
+        #- name: refresh service
+        #  run: aws ecs update-service --cluster strapi-website-ecs-cluster --service strapi-website-ecs --force-new-deployment --region eu-south-1
+        #- name: Build & Push to AWS ECR Private
+        #  uses: opspresso/action-docker@master  
+         # with:
+          #  args: --ecr
+         # env:
+          # AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          # AWS_REGION: "eu-south-1" 
+          # TAG_NAME: "latest" 
+          # BUILDX: "true" 
+
+        - name: verifica path
+          run: ls
+
+        
