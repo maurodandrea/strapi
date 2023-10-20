@@ -57,12 +57,12 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v3
         with:
           aws-region: eu-south-1
-          #role_to_assume: ${{ secrets.IAM_ROLE }}
+          ##role_to_assume: ${{ secrets.IAM_ROLE }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Docker image Build
-        run: docker build -t cms-strapi:latest .
+        run: docker build -t strapi:latest .
 
       - name: Docker image Tag
         run: docker tag strapi:latest 713024823233.dkr.ecr.eu-south-1.amazonaws.com/strapi:latest
