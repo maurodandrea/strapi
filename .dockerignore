@@ -1,6 +1,6 @@
 **/.infrastructure
 **/.github
-**/strapi-v4
+**/apps/nextjs-website*
 .gitignore
 node_modules
 license.txt
