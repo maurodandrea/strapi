@@ -1,16 +1,16 @@
-FROM node:16
-# Installing libvips-dev for sharp Compatability
-RUN apt-get update && apt-get install libvips-dev -y
-#ARG NODE_ENV=production
-ARG NODE_ENV=development
-ENV NODE_ENV=${NODE_ENV}
-WORKDIR /opt/
-COPY ./package.json ./package-lock.json ./
-ENV PATH /opt/node_modules/.bin:$PATH
-RUN npm install
-WORKDIR /opt/app
-COPY ./ .
-RUN npm run build
-EXPOSE 1337
-#CMD ["npm", "start"]
-CMD ["npm", "run", "develop"]
+ARG BASE_VERSION
+FROM strapi/base:${BASE_VERSION}
+
+ARG STRAPI_VERSION
+RUN yarn global add strapi@${STRAPI_VERSION}
+
+RUN mkdir /srv/app && chown 1000:1000 -R /srv/app
+
+WORKDIR /srv/app
+
+VOLUME /srv/app
+
+COPY docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+CMD ["strapi", "develop"]
