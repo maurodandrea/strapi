@@ -1,0 +1,10 @@
+**/.infrastructure
+**/.github
+**/apps/nextjs-website*
+.gitignore
+node_modules
+license.txt
+exports
+*.cache
+build
+.strapi-updater.json
