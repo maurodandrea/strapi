@@ -10,7 +10,7 @@ ENV PATH /opt/node_modules/.bin:$PATH
 RUN npm install
 WORKDIR /opt/app
 COPY ./ .
-#RUN npm run build
+RUN npm run build
 EXPOSE 1337
 CMD ["npm", "run", "start"]
 #CMD ["npm", "start"]
