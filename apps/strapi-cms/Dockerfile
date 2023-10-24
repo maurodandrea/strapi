@@ -12,7 +12,7 @@ WORKDIR /opt/app
 COPY . .
 RUN npm run build
 
-# Creating final production image  
+# Creating final production image   
 FROM node:16-alpine
 RUN apk add --no-cache vips-dev
 ARG NODE_ENV=production
