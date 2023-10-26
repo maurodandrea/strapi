@@ -3,6 +3,7 @@
 
 ### Strapi ###
 
+.env
 license.txt
 exports
 *.cache
