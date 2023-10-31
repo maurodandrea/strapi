@@ -73,4 +73,5 @@ jobs:
             registry: 713024823233.dkr.ecr.eu-south-1.amazonaws.com
     
       - name: Docker image Push
-        run: aws ecr get-login-password --region eu-south-1 | docker push 713024823233.dkr.ecr.eu-south-1.amazonaws.com/strapi:latest
+        #run: aws ecr get-login-password --region eu-south-1 | docker push 713024823233.dkr.ecr.eu-south-1.amazonaws.com/strapi:latest
+        run: aws ecr get-login-password --region eu-south-1 | docker push ${{ steps.login-ecr.outputs.registry }}/strapi:latest
