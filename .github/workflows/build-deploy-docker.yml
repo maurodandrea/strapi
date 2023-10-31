@@ -61,17 +61,26 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      - name: Docker image Build
-        run: docker build -t strapi:latest .
+    #  - name: Docker image Build
+    #    run: docker build -t strapi:latest .
 
-      - name: Docker image Tag
-        run: docker tag strapi:latest 713024823233.dkr.ecr.eu-south-1.amazonaws.com/strapi:latest
+   #   - name: Docker image Tag
+   #     run: docker tag strapi:latest 713024823233.dkr.ecr.eu-south-1.amazonaws.com/strapi:latest
 
       - name: Login to ECR
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
         with:
             registry: 713024823233.dkr.ecr.eu-south-1.amazonaws.com
     
-      - name: Docker image Push
+     # - name: Docker image Push
         #run: aws ecr get-login-password --region eu-south-1 | docker push 713024823233.dkr.ecr.eu-south-1.amazonaws.com/strapi:latest
-        run: aws ecr get-login-password --region eu-south-1 | docker push ${{ steps.login-ecr.outputs.registry }}/strapi:latest
+     #   run: aws ecr get-login-password --region eu-south-1 | docker push ${{ steps.login-ecr.outputs.registry }}/strapi:latest
+      
+      - name: Build Push and Tag
+        uses: docker/build-push-action@v4
+        with:
+            context: .
+            file: ./Dockerfile
+            push: true
+            tags: ${{ steps.login-ecr.outputs.registry }}/strapi:latest
+provenance: false
