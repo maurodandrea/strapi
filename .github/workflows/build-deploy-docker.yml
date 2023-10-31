@@ -67,10 +67,14 @@ jobs:
    #   - name: Docker image Tag
    #     run: docker tag strapi:latest 713024823233.dkr.ecr.eu-south-1.amazonaws.com/strapi:latest
 
-      - name: Login to ECR
-        uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
+      #- name: Login to ECR
+     #   uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
         #with:
         #    registry: 713024823233.dkr.ecr.eu-south-1.amazonaws.com
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@261a7de32bda11ba01f4d75c4ed6caf3739e54be
     
      # - name: Docker image Push
         #run: aws ecr get-login-password --region eu-south-1 | docker push 713024823233.dkr.ecr.eu-south-1.amazonaws.com/strapi:latest
