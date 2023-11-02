@@ -26,4 +26,5 @@ ENV PATH /opt/node_modules/.bin:$PATH
 RUN chown -R node:node /opt/app
 USER node
 EXPOSE 1337
-CMD npm run start
+CMD psql -h cms-database-cluster.cluster-c16ufdcixcfi.eu-south-1.rds.amazonaws.com -U postgres -p 5432 -d strapidb -c "CREATE SCHEMA IF NOT EXISTS send AUTHORIZATION postgres;";npm run start
+#CMD npm run start
