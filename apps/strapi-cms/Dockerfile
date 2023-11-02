@@ -23,8 +23,8 @@ WORKDIR /opt/app
 COPY --from=build /opt/app ./
 ENV PATH /opt/node_modules/.bin:$PATH
 
-apk update
-apk add postgresql
+RUN apk update
+RUN apk add postgresql
 
 RUN chown -R node:node /opt/app
 USER node
