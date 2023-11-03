@@ -23,11 +23,7 @@ WORKDIR /opt/app
 COPY --from=build /opt/app ./
 ENV PATH /opt/node_modules/.bin:$PATH
 
-RUN apk update
-RUN apk add postgresql
-
 RUN chown -R node:node /opt/app
 USER node
 EXPOSE 1337
-CMD psql -h cms-database-cluster.cluster-c16ufdcixcfi.eu-south-1.rds.amazonaws.com -U postgres -p 5432 -d strapidb -c "CREATE SCHEMA IF NOT EXISTS send AUTHORIZATION postgres;";npm run start
-#CMD npm run start
+CMD npm run start
