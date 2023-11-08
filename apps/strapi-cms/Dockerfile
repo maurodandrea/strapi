@@ -1,5 +1,6 @@
 # Creating multi-stage build for production
-FROM node:18-alpine as build
+ARG NODE_IMAGE=node:18-alpine@d51f2f5ce2dc7dfcc27fc2aa27a6edc66f6b89825ed4c7249ed0a7298c20a45a
+FROM ${NODE_IMAGE} as build
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
@@ -13,7 +14,7 @@ COPY . .
 RUN npm run build
 
 # Creating final production image
-FROM node:16-alpine
+FROM ${NODE_IMAGE}
 RUN apk add --no-cache vips-dev
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
