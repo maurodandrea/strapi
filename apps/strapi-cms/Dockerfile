@@ -14,7 +14,7 @@ COPY . .
 RUN npm run build
 
 # Creating final production image
-FROM ${NODE_IMAGE} af finalbuild
+FROM ${NODE_IMAGE} as finalbuild
 RUN apk add --no-cache vips-dev
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
