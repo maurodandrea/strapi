@@ -88,7 +88,7 @@ jobs:
           IMAGE_TAG: latest
         with:
             #context: apps/strapi-cms
-            #file: ./Dockerfile
+            file: apps/strapi-cms/Dockerfile
             push: true
             #tags: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
             tags: ${{ steps.login-ecr.outputs.registry }}/strapi:latest
