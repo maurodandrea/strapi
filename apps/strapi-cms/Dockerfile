@@ -1,6 +1,7 @@
-# Creating multi-stage build for production
 ARG NODE_IMAGE=18-alpine
-FROM node:${NODE_IMAGE}@d51f2f5ce2dc7dfcc27fc2aa27a6edc66f6b89825ed4c7249ed0a7298c20a45a as build
+
+# Creating multi-stage build for production
+FROM node:${NODE_IMAGE} as build
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
@@ -14,7 +15,7 @@ COPY . .
 RUN npm run build
 
 # Creating final production image
-FROM node:${NODE_IMAGE}@d51f2f5ce2dc7dfcc27fc2aa27a6edc66f6b89825ed4c7249ed0a7298c20a45a as build
+FROM node:${NODE_IMAGE} as build
 RUN apk add --no-cache vips-dev
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
