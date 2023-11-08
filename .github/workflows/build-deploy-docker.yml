@@ -30,7 +30,7 @@ on:
 defaults:
   run:
     shell: bash
-    #working-directory: apps/strapi-cms
+    working-directory: apps/strapi-cms
 
 permissions:
   id-token: write   # This is required for requesting the JWT  
