@@ -30,7 +30,7 @@ on:
 defaults:
   run:
     shell: bash
-    #working-directory: apps/strapi-cms
+    working-directory: apps/strapi-cms
 
 permissions:
   id-token: write   # This is required for requesting the JWT  
@@ -87,8 +87,8 @@ jobs:
           ECR_REPOSITORY: strapi
           IMAGE_TAG: latest
         with:
-            #context: apps/strapi-cms
-            file: apps/strapi-cms/Dockerfile
+            context: apps/strapi-cms
+            #file: apps/strapi-cms/Dockerfile
             push: true
             #tags: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
             tags: ${{ steps.login-ecr.outputs.registry }}/strapi:latest
