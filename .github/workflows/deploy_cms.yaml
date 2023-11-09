@@ -67,6 +67,6 @@ jobs:
             #apps/strapi-cms
             push: true
             tags: ${{ steps.login-ecr.outputs.registry }}/strapi:latest
-            ${{ github.sha }}
+            #${{ github.sha }}
             provenance: false
             file: apps/strapi-cms/Dockerfile
