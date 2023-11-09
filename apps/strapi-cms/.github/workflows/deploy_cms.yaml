@@ -1,0 +1,68 @@
+name: Deploy CMS
+
+on:
+  push:
+        branches: ['main']
+        # Run only if there are at least one change matching the following paths
+        paths:
+          - 'apps/strapi-cms/**'
+          - '.github/workflows/deploy_cms.yaml'
+
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - warning
+      environment:
+        description: 'The environment used as target'
+        type: choice
+        required: true
+        default: prod
+        options:
+        - prod
+
+defaults:
+  run:
+    shell: bash
+    working-directory: apps/strapi-cms
+
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+
+jobs:
+  deploy:
+    name: Build and push CMS image
+    runs-on: ubuntu-latest
+    continue-on-error: false
+    environment: ${{ inputs.environment }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
+    
+      - name: Configure AWS Credentials
+        uses: ./.github/actions/configure-aws-credentials
+        with:
+          aws_region: ${{ env.AWS_REGION || 'eu-south-1' }}
+          role_to_assume: ${{ secrets.IAM_ROLE_DEPLOY_CMS }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@062b18b96a7aff071d4dc91bc00c4c1a7945b076 # v2.0.1
+
+      - name: Build Push and Tag
+        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: strapi
+          IMAGE_TAG: ${{ github.sha }}
+        with:
+            context: apps/strapi-cms
+            push: true
+            tags: ${{ steps.login-ecr.outputs.registry }}/strapi:${{ github.sha }}
+            provenance: false
