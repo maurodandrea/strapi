@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
   "extends": "ts-config/base.json",
-=======
-  "extends": "../../tsconfig",
->>>>>>> 174ad7d70ceaedc43dc34d5e078a297fc07d71af
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": ".",
