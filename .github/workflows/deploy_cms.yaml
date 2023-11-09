@@ -48,8 +48,9 @@ jobs:
       - name: Configure AWS Credentials
         uses: ./.github/actions/configure-aws-credentials
         with:
-          aws_region: ${{ env.AWS_REGION || 'eu-south-1' }}
-          role_to_assume: ${{ secrets.IAM_ROLE_DEPLOY_CMS }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-south-1
 
       - name: Login to Amazon ECR
         id: login-ecr
