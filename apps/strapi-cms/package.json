@@ -15,6 +15,7 @@
     "eslint": "^8.50.0",
     "eslint-config-custom": "*",
     "shx": "^0.3.4",
+    "ts-config": "*",
     "typescript": "5.2.2"
   },
   "dependencies": {
@@ -26,8 +27,7 @@
     "strapi-plugin-navigation": "^2.2.16"
   },
   "strapi": {
-    "uuid": "81c5ca34-58ca-4e66-b893-4644728c7403",
-    "telemetryDisabled": true
+    "uuid": "81c5ca34-58ca-4e66-b893-4644728c7403"
   },
   "engines": {
     "node": ">=16.0.0",
