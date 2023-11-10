@@ -18,7 +18,7 @@ on:
         options:
         - warning
       environment:
-        description: 'The environment used as target'
+        description: 'The environment used  as target'
         type: choice
         required: true
         default: prod
