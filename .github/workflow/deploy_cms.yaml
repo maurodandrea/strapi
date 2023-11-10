@@ -65,5 +65,5 @@ jobs:
         with:
             context: apps/strapi-cms
             push: true
-            tags: ${{ steps.login-ecr.outputs.registry }}/strapi:${{ github.sha }}
+            tags: ${{ steps.login-ecr.outputs.registry }}/strapi:latest
             provenance: false
