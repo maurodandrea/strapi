@@ -12,7 +12,7 @@ WORKDIR /opt/
 COPY /apps/strapi-cms/package*.json ./
 RUN ls
 RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install
-ENV PATH /opt/apps/strapi-cms/node_modules/.bin:$PATH
+ENV PATH /opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
 COPY /apps/strapi-cms/ .
 RUN ls
