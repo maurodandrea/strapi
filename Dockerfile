@@ -3,7 +3,7 @@ ARG NODE_IMAGE=node:18-alpine@sha256:d51f2f5ce2dc7dfcc27fc2aa27a6edc66f6b89825ed
 # Creating multi-stage build for production
 FROM ${NODE_IMAGE} as build
 RUN ls
-RUN cd opt
+WORKDIR /opt/
 RUN ls
 #WORKDIR apps/strapi-cms/
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
