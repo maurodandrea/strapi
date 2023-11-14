@@ -23,6 +23,7 @@ FROM ${NODE_IMAGE} as buildfinal
 RUN apk add --no-cache vips-dev
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
+COPY tsconfig.json ./
 WORKDIR /opt/
 COPY --from=build /opt/node_modules ./node_modules
 WORKDIR /opt/app
