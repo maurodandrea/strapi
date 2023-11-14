@@ -3,3 +3,9 @@
 # Allow files and directories
 !/tsconfig.json
 !/apps/strapi-cms/
+# Exclude this
+**/apps/strapi-cms/build/
+**/apps/strapi-cms/node_modules/
+**/apps/strapi-cms/.env
+**/apps/strapi-cms/data/
+**/apps/strapi-cms/backup/
