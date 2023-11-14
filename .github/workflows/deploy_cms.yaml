@@ -2,7 +2,7 @@ name: Deploy CMS
 
 on:
   push:
-        branches: ['main']
+        branches: ['mains']
         # Run only if there are at least one change matching the following paths
         paths:
           - 'apps/strapi-cms/**'
@@ -28,7 +28,8 @@ on:
 defaults:
   run:
     shell: bash
-    working-directory: apps/strapi-cms
+    working-directory: ./
+    #apps/strapi-cms
 
 permissions:
   id-token: write   # This is required for requesting the JWT
@@ -63,7 +64,8 @@ jobs:
           ECR_REPOSITORY: strapi
           IMAGE_TAG: ${{ github.sha }}
         with:
-            context: apps/strapi-cms
+            context: ./
+            #apps/strapi-cms
             push: true
             tags: ${{ steps.login-ecr.outputs.registry }}/strapi:latest
             provenance: false
