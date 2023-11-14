@@ -9,7 +9,7 @@ ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR apps/strapi-cms/opt/
 COPY package*.json ./
-RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --only=production
+RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install
 ENV PATH /opt/node_modules/.bin:$PATH
 WORKDIR apps/strapi-cms/opt/app
 COPY . .
