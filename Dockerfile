@@ -7,7 +7,7 @@ RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev l
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
-WORKDIR apps/strapi-cms/opt/
+WORKDIR apps/strapi-cms/
 COPY package*.json ./
 RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install
 ENV PATH apps/strapi-cms/opt/node_modules/.bin:$PATH
