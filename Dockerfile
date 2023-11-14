@@ -30,7 +30,7 @@ WORKDIR /opt/apps/strapi-cms/app
 COPY --from=build /opt/apps/strapi-cms/app ./
 ENV PATH /opt/apps/strapi-cms/node_modules/.bin:$PATH
 
-RUN chown -R node:node /opt/app
+RUN chown -R node:node /opt/apps/strapi-cms/app
 USER node
 EXPOSE 1337
 CMD npm run start
