@@ -1,13 +1,9 @@
 # Ignore everything
 *
-
 # Allow files and directories
 !/tsconfig.json
-!/apps/strapi-cms
-
-# Ignore unnecessary files inside allowed directories
-# This should go after the allowed directories
-**/apps/strapi-cms/build/
+!/apps/strapi-cms/
+# Exclude this
 **/apps/strapi-cms/build/
 **/apps/strapi-cms/node_modules/
 **/apps/strapi-cms/.env

@@ -28,7 +28,7 @@ on:
 defaults:
   run:
     shell: bash
-    working-directory: ./
+    #working-directory: ./
     #apps/strapi-cms
 
 permissions:
@@ -64,7 +64,7 @@ jobs:
           ECR_REPOSITORY: strapi
           IMAGE_TAG: ${{ github.sha }}
         with:
-            context: ./
+            #context: ./
             #apps/strapi-cms
             push: true
             tags: ${{ steps.login-ecr.outputs.registry }}/strapi:latest
