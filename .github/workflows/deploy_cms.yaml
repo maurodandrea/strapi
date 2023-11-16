@@ -77,7 +77,7 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-            task-definition: /.infrastructure/task-definitions/cms_app.json
+            task-definition: .infrastructure/task-definitions/cms_app.json
             container-name: cms-docker
             image: ${{ steps.login-ecr.outputs.registry }}/strapi:${{ github.sha }}
 
