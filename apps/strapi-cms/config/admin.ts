@@ -1,4 +1,4 @@
-export default ({ env }: any) => ({
+export default ({ env }) => ({
   auth: {
     secret: env('ADMIN_JWT_SECRET'),
   },
@@ -10,5 +10,8 @@ export default ({ env }: any) => ({
       salt: env('TRANSFER_TOKEN_SALT'),
     },
   },
-  autoOpen: false,
+  flags: {
+    nps: env.bool('FLAG_NPS', true),
+    promoteEE: env.bool('FLAG_PROMOTE_EE', true),
+  },
 });

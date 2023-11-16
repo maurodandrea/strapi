@@ -1,19 +1,5 @@
 {
-  "extends": "../../../../tsconfig.json",
-  "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
-
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-
-    "noImplicitAny": false,
-    "allowJs": true,
-    "incremental": true,
-
-    "jsx": "react-jsx"
-  },
+  "extends": "@strapi/typescript-utils/tsconfigs/admin",
   "include": [
     "../plugins/**/admin/src/**/*",
     "./"

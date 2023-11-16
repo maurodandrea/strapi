@@ -1,28 +1,57 @@
-# Useful Strapi info
+# 🚀 Getting started with Strapi
 
-This file describes some key points about Strapi that may help when first approaching the technology or while testing.
+Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
 
-## On launch
-Upon running ```npm run dev``` will do 3 things:
-1. Generate a JWT secret and place it into .env (unless it already exists);
-2. Build the admin panel's UI (if it wasnt' built already);
-3. Run the server at the address specified in the .env file (currently localhost:1337).
+### `develop`
 
-## Database
-The current Strapi project utilizes a temporary SQLite file as DB.
-It will be auto-generated on launch at ./.tmp/data.db
+Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
 
-As such, data created inside the CMS will not be permanent and is meant for testing purposes only.
-If you wish to share data with others, the best option is to manually copy and send the data.db file.
+```
+npm run develop
+# or
+yarn develop
+```
 
-## Media Library
-By default Strapi will save any media uploaded to the ./public/upload folder.
-This means that no media will be pushed to Github.
+### `start`
 
-As is the case for the database, if you wish to share media with others, the best option is to manually copy and send the /upload folder's contents.
+Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
 
-## Content Type Builder
-It's crucial to remember that adding content types and components through the use of the "Content Type Builder" will alter the project's code (specifically the /src folder).
+```
+npm run start
+# or
+yarn start
+```
 
-## Updating code
-After updating the project's code and before running ```npm run dev``` it is advisable to run the ```npm run build``` command to rebuild the admin panel's UI in case any of the changes affected it.
+### `build`
+
+Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
+
+```
+npm run build
+# or
+yarn build
+```
+
+## ⚙️ Deployment
+
+Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
+
+## 📚 Learn more
+
+- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
+- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
+- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
+- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
+- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
+
+Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
+
+## ✨ Community
+
+- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
+- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
+- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
+
+---
+
+<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
