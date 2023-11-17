@@ -8,6 +8,7 @@ export default ({ env }: any) => ({
           region: env('AWS_REGION'),
           params: {
             ACL: env('AWS_ACL', 'public-read-write'),
+            signedUrlExpires: env('AWS_SIGNED_URL_EXPIRES', 15 * 60),
             Bucket: env('AWS_BUCKET'),
           },
         },
