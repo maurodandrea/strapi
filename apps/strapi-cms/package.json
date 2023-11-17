@@ -1,34 +1,36 @@
 {
-  "name": "strapi-s-3-test",
+  "name": "strapi-cms",
   "private": true,
-  "version": "0.1.0",
-  "description": "A Strapi application",
+  "version": "0.0.0",
   "scripts": {
+    "clean": "shx rm -rf dist/",
+    "compile": "npm run clean && tsc --noEmit",
     "dev": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
+    "lint": "eslint --ignore-path .gitignore .",
     "strapi": "strapi"
   },
-  "dependencies": {
-    "@strapi/plugin-cloud": "4.15.4",
-    "@strapi/plugin-i18n": "4.15.4",
-    "@strapi/plugin-users-permissions": "4.15.4",
-    "@strapi/provider-upload-aws-s3": "^4.15.4",
-    "@strapi/strapi": "4.15.4",
-    "better-sqlite3": "8.6.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-router-dom": "5.3.4",
-    "styled-components": "5.3.3"
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "eslint-config-custom": "*",
+    "shx": "^0.3.4",
+    "typescript": "5.2.2"
   },
-  "author": {
-    "name": "A Strapi developer"
+  "dependencies": {
+    "@strapi/plugin-i18n": "4.13.7",
+    "@strapi/plugin-users-permissions": "4.13.7",
+    "@strapi/provider-upload-aws-s3": "^4.15.0",
+    "@strapi/strapi": "4.13.7",
+    "better-sqlite3": "8.6.0",
+    "pg": "^8.11.3",
+    "strapi-plugin-navigation": "^2.2.16"
   },
   "strapi": {
-    "uuid": "29eac30c-2c9f-4dc3-a9ef-6c1f153d848e"
+    "uuid": "81c5ca34-58ca-4e66-b893-4644728c7403"
   },
   "engines": {
-    "node": ">=18.0.0 <=20.x.x",
+    "node": ">=16.0.0",
     "npm": ">=6.0.0"
   },
   "license": "MIT"
