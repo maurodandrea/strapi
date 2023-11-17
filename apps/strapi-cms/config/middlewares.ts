@@ -1,4 +1,4 @@
-export default [
+export default ({ env }: any) => [
   'strapi::errors',{
     name: 'strapi::security',
     config: {
@@ -11,14 +11,14 @@ export default [
             'data:',
             'blob:',
             'dl.airtable.com',
-            'cms-medialibrary-6373.s3.eu-south-1.amazonaws.com',
+            env('AWS_BUCKET_FULL_URL'),
           ],
           'media-src': [
             "'self'",
             'data:',
             'blob:',
             'dl.airtable.com',
-            'cms-medialibrary-6373.s3.eu-south-1.amazonaws.com',
+            env('AWS_BUCKET_FULL_URL'),
           ],
           upgradeInsecureRequests: null,
         },
