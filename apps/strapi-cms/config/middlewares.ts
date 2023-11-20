@@ -1,11 +1,12 @@
 export default ({ env }: any) => [
-  'strapi::errors',{
+  'strapi::errors',
+  {
     name: 'strapi::security',
     config: {
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          'connect-src': ["'self'", 'http:'],
+          'connect-src': ["'self'", 'https:'],
           'img-src': [
             "'self'",
             'data:',
