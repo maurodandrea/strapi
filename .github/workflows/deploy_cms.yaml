@@ -28,8 +28,7 @@ on:
 defaults:
   run:
     shell: bash
-    #working-directory: ./
-    #apps/strapi-cms
+    working-directory: apps/strapi-cms
 
 permissions:
   id-token: write   # This is required for requesting the JWT
@@ -65,8 +64,7 @@ jobs:
           ECR_REPOSITORY: strapi
           IMAGE_TAG: ${{ github.sha }}
         with:
-            #context: ./
-            #apps/strapi-cms
+            context: apps/strapi-cms
             push: true
             tags: ${{ steps.login-ecr.outputs.registry }}/strapi:${{ github.sha }}
             provenance: false
@@ -83,9 +81,8 @@ jobs:
            image: ${{ steps.login-ecr.outputs.registry }}/strapi:${{ github.sha }}
 
       - name: Deploy new ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        uses: aws-actions/amazon-ecs-deploy-task-definition@df9643053eda01f169e64a0e60233aacca83799a # v1.4.11
         with:
             task-definition: ${{ steps.task-def.outputs.task-definition }}
             service: cms-ecs
             cluster: cms-ecs-cluster
-            wait-for-service-stability: true
