@@ -6,7 +6,7 @@ export default ({ env }: any) => [
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          'connect-src': ["'self'", 'https:'],
+          'connect-src': ["'self'", 'http:'],
           'img-src': [
             "'self'",
             'data:',
