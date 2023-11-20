@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+
+    "outDir": "dist",
+    "rootDir": ".",
     "target": "es2021",
     "module": "commonjs",
     "esModuleInterop": true,
