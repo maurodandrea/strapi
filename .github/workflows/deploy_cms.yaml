@@ -71,8 +71,11 @@ jobs:
 
       - name: Generate definition file
         run: aws ecs describe-task-definition --task-definition cms-task-def --query taskDefinition > task-definition.json
-     
-      - name: Update Image in task definition
+
+     - name: ls
+       run: ls
+       
+     - name: Update Image in task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
