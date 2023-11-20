@@ -28,8 +28,7 @@ on:
 defaults:
   run:
     shell: bash
-    #working-directory: ./
-    #apps/strapi-cms
+    working-directory: apps/strapi-cms
 
 permissions:
   id-token: write   # This is required for requesting the JWT
@@ -65,20 +64,19 @@ jobs:
           ECR_REPOSITORY: strapi
           IMAGE_TAG: ${{ github.sha }}
         with:
-            #context: ./
-            #apps/strapi-cms
+            context: apps/strapi-cms
             push: true
             tags: ${{ steps.login-ecr.outputs.registry }}/strapi:${{ github.sha }}
             provenance: false
 
       - name: Generate definition file
         run: aws ecs describe-task-definition --task-definition cms-task-def --query taskDefinition > task-definition.json
-     
+       
       - name: Update Image in task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-           task-definition: task-definition.json
+           task-definition: apps/strapi-cms/task-definition.json
            container-name: cms-docker
            image: ${{ steps.login-ecr.outputs.registry }}/strapi:${{ github.sha }}
 
