@@ -63,7 +63,7 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: strapi
           IMAGE_TAG: ${{ github.sha }}
-       with:
+        with:
             context: apps/strapi-cms
             push: true
             tags: ${{ steps.login-ecr.outputs.registry }}/strapi:${{ github.sha }}
