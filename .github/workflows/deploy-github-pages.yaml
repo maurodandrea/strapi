@@ -36,4 +36,4 @@ jobs:
         with:
           path: build # change to your build folder
           install_command: npm ci
-          build_command: npm build
+          build_command: npm run storybook
