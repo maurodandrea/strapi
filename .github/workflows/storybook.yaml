@@ -8,11 +8,6 @@ permissions:
   pages: write
   id-token: write
 
-defaults:
-  run:
-    shell: bash
-    working-directory: apps/nextjs-website
-
 jobs:
   deploy:
     environment:
@@ -20,21 +15,9 @@ jobs:
       url: ${{ steps.build-publish.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-    # Manual Checkout
-      - uses: actions/checkout@v4
-
-    # Set up Node
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '18.x'
-          
-      - name: ls
-        run: ls
-      
-      - id: build-publish
-        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
-        with:
-          path: build # change to your build folder
-          #install_command: npm ci
-          build_command: npm run storybook
-          chekcout: false
+    - id: build-publish
+      uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
+      with:
+        path: build # change to your build folder
+        install_command: yarn install
+        build_command: yarn run build-storybook
