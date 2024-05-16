@@ -37,4 +37,4 @@ jobs:
           install_command: npm install #ci
           build_command: npm run storybook
           path: dist/storybook
-          checkout: true
+          checkout: false
