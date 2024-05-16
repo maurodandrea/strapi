@@ -8,10 +8,10 @@ permissions:
   pages: write
   id-token: write
 
-#defaults:
-#  run:
-#    shell: bash
-#    working-directory: apps/nextjs-website
+defaults:
+  run:
+    shell: bash
+    working-directory: apps/nextjs-website
 
 jobs:
   deploy:
