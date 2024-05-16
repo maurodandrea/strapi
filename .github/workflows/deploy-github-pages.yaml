@@ -30,11 +30,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '18.17.1'
-
+      
+      - name: build
+        run: npm run build
+        
       #👇 Add Storybook build and deploy to GitHub Pages as a step in the workflow
       - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.1
         with:
           install_command: npm ci
-          build_command: npm run build #storybook
+          build_command: npm run storybook
           path: apps/nextjs-website
           checkout: false
