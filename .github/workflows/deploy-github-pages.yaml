@@ -8,6 +8,11 @@ permissions:
   pages: write
   id-token: write
 
+defaults:
+  run:
+    shell: bash
+    working-directory: apps/strapi-cms
+
 jobs:
   deploy:
     environment:
