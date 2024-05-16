@@ -30,7 +30,7 @@ jobs:
           node-version: '18.7'
           
       - name: npminstall
-        run: npm i
+        run: npm install
 
      # - name: npmaudit
      #   run: npm audit fix --force
