@@ -29,7 +29,10 @@ jobs:
     #      node-version: '18.x'
           
       - name: npminstall
-        run: npm install
+        run: npm i
+
+      - name: npmaudit
+        run: npm audit fix --force
       
       - id: build-publish
         uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
