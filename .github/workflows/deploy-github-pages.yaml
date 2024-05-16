@@ -12,6 +12,11 @@ permissions:
   pages: write
   id-token: write
 
+defaults:
+  run:
+    shell: bash
+    working-directory: apps/nextjs-website
+
 # List of jobs
 jobs:
   deploy:
