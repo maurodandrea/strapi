@@ -8,10 +8,10 @@ permissions:
   pages: write
   id-token: write
 
-defaults:
-  run:
-    shell: bash
-    working-directory: apps/strapi-cms
+#defaults:
+#  run:
+#    shell: bash
+#    working-directory: apps/strapi-cms
 
 jobs:
   deploy:
@@ -20,7 +20,7 @@ jobs:
       url: ${{ steps.build-publish.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-    - id: ls
+    - name: ls
       run: ls
       
     - id: build-publish
