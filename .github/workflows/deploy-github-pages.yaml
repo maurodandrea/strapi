@@ -28,12 +28,12 @@ jobs:
     #    with:
     #      node-version: '18.x'
           
-     # - name: ls
-    #    run: ls
+      - name: npminstall
+        run: npm install
       
       - id: build-publish
         uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
         with:
           path: build # change to your build folder
-          install_command: npm i
+          #install_command: npm i
           build_command: npm run storybook
