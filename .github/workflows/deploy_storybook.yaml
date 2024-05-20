@@ -57,11 +57,11 @@ jobs:
         shell: bash
         run: npm run build-storybook
 
-      - name: Upload file to folder
-        uses: actions/upload-pages-artifact@v3
-        with: 
-          #path: apps/nextjs-website/outstorybook
-          path: outstorybook
+      #- name: Upload file to folder
+      #  uses: actions/upload-pages-artifact@v3
+      #  with: 
+      #    #path: apps/nextjs-website/outstorybook
+      #    path: outstorybook
 
       - name: Configure AWS Credentials
         #uses: ./.github/actions/configure-aws-credentials
@@ -76,7 +76,7 @@ jobs:
       - name: Deploy to S3 Bucket
         shell: bash
         #run: aws s3 sync ./apps/nextjs-website/outstorybook s3://${{ vars.S3_BUCKET_NAME }}/storybook --delete
-        run: aws s3 sync ./outstorybook s3://${{ vars.S3_BUCKET_NAME }}/storybook --delete
+        run: aws s3 sync ./storybook-static s3://${{ vars.S3_BUCKET_NAME }}/storybook --delete
 
       #- name: Create AWS Cloudfront Invalidation
         #shell: bash
