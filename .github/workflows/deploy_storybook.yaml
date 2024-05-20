@@ -59,7 +59,7 @@ jobs:
       - name: Upload file to folder
         uses: actions/upload-pages-artifact@v3
         with: 
-          path: apps/nextjs-website/outstorybook
+          #path: apps/nextjs-website/outstorybook
           path: outstorybook
 
       - name: Configure AWS Credentials
