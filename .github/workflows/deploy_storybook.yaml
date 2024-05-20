@@ -56,6 +56,12 @@ jobs:
         shell: bash
         run: npm run storybook
 
+      - name: Upload file to folder
+        uses: actions/upload-pages-artifact@v3
+        with: 
+          path: apps/nextjs-website/outstorybook
+          path: outstorybook
+
       - name: Configure AWS Credentials
         #uses: ./.github/actions/configure-aws-credentials
         uses: aws-actions/configure-aws-credentials@50ac8dd1e1b10d09dac7b8727528b91bed831ac0
