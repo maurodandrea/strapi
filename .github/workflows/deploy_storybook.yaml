@@ -55,7 +55,7 @@ jobs:
 
       - name: Create Storybook
         shell: bash
-        run: npm run storybook
+        run: npm run build-storybook
 
       - name: Upload file to folder
         uses: actions/upload-pages-artifact@v3
