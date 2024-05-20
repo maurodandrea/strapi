@@ -42,7 +42,7 @@ jobs:
 
       - name: Install dependencies
         shell: bash
-        run: npm ci
+        run: npm install #ci
 
       #- name: GHPages
       #- id: build-publish
