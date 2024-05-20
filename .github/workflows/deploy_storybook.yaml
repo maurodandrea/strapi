@@ -8,10 +8,10 @@ on:
       - 'main' # Target branch is main
   workflow_dispatch:
 
-defaults:
-  run:
-    shell: bash
-    working-directory: apps/nextjs-website
+#defaults:
+  #run:
+    #shell: bash
+    #working-directory: apps/nextjs-website
 
 # These permissions are needed to interact with GitHub's OIDC Token endpoint.
 permissions:
@@ -27,10 +27,10 @@ concurrency:
 jobs:
 
   build:
-    name: Build and Deploy Storybook
-    environment:
-      name: github-pages
-      url: ${{ steps.build-publish.outputs.page_url }}
+    #name: Build and Deploy Storybook
+    #environment:
+      #name: github-pages
+      #url: ${{ steps.build-publish.outputs.page_url }}
     runs-on: ubuntu-latest
     
     concurrency:
@@ -50,7 +50,7 @@ jobs:
         shell: bash
         run: npm ci
 
-      - name: Checkout
+      - name: GHPages
       - id: build-publish
         uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
         with:
@@ -70,9 +70,10 @@ jobs:
 
       - name: Deploy to S3 Bucket
         shell: bash
-        run: aws s3 sync ./apps/nextjs-website/outstorybook s3://${{ vars.S3_BUCKET_NAME }}/storybook --delete
+        #run: aws s3 sync ./apps/nextjs-website/outstorybook s3://${{ vars.S3_BUCKET_NAME }}/storybook --delete
+        run: aws s3 sync ./outstorybook s3://${{ vars.S3_BUCKET_NAME }}/storybook --delete
 
-      - name: Create AWS Cloudfront Invalidation
-        shell: bash
-        run: aws cloudfront create-invalidation --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID_STORYBOOK }} --paths "/*"
+      #- name: Create AWS Cloudfront Invalidation
+        #shell: bash
+        #run: aws cloudfront create-invalidation --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID_STORYBOOK }} --paths "/*"
       
