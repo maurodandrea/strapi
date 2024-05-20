@@ -21,7 +21,7 @@ permissions:
 jobs:
 
   build:
-    #name: Build and Deploy Storybook
+    name: Build and Deploy Storybook
     #environment:
       #name: github-pages
       #url: ${{ steps.build-publish.outputs.page_url }}
