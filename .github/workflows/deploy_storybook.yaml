@@ -1,0 +1,78 @@
+name: Deploy Storybook
+
+on:
+  pull_request:
+    types:
+      - closed # Trigger when the PR is closed
+    branches:
+      - 'main' # Target branch is main
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+    working-directory: apps/nextjs-website
+
+# These permissions are needed to interact with GitHub's OIDC Token endpoint.
+permissions:
+  id-token: write
+  contents: read
+  
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+
+  build:
+    name: Build and Deploy Storybook
+    environment:
+      name: github-pages
+      url: ${{ steps.build-publish.outputs.page_url }}
+    runs-on: ubuntu-latest
+    
+    concurrency:
+      group: ${{ github.workflow }}
+      cancel-in-progress: false
+      
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.17"
+
+      - name: Install dependencies
+        shell: bash
+        run: npm ci
+
+      - name: Checkout
+      - id: build-publish
+        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
+        with:
+          path: apps/nextjs-website/outstorybook # build folder
+          install_command: npm install
+          build_command: npm run storybook
+
+      - name: Configure AWS Credentials
+        #uses: ./.github/actions/configure-aws-credentials
+        uses: aws-actions/configure-aws-credentials@50ac8dd1e1b10d09dac7b8727528b91bed831ac0
+        with:
+          #aws_region: ${{ env.AWS_REGION || 'eu-south-1' }}
+          #role_to_assume: ${{ secrets.IAM_ROLE_DEPLOY_WEBSITE }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-south-1
+
+      - name: Deploy to S3 Bucket
+        shell: bash
+        run: aws s3 sync ./apps/nextjs-website/outstorybook s3://${{ vars.S3_BUCKET_NAME }}/storybook --delete
+
+      - name: Create AWS Cloudfront Invalidation
+        shell: bash
+        run: aws cloudfront create-invalidation --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID_STORYBOOK }} --paths "/*"
+      
