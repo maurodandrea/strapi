@@ -9,7 +9,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-	"target": "es2021",
+    "target": "es2021",
     "module": "commonjs",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
