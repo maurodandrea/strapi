@@ -53,7 +53,7 @@ jobs:
           #build_command: npm run storybook
 
       - name: Create Storybook
-      - id: build-publish
+        shell: bash
         run: npm run storybook
 
       - name: Configure AWS Credentials
