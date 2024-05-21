@@ -41,6 +41,9 @@ jobs:
         #with:
           #node-version: "18.17"
         uses: ./.github/actions/setup-node
+      
+      - name: ellesse
+        run: ls
 
       - name: Install dependencies
         shell: bash
