@@ -57,9 +57,10 @@ jobs:
           #install_command: npm install
           #build_command: npm run storybook
 
+
       - name: Create Storybook
         shell: bash
-        run: npm run build-storybook
+        run: cd apps/nextjs-website & npm run build-storybook
 
       #- name: Upload file to folder
       #  uses: actions/upload-pages-artifact@v3
