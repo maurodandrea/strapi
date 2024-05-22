@@ -347,7 +347,7 @@ dist
 # gitignore template for the Storybook, UI guide for front apps
 # website: https://storybook.js.org/
 
-#storybook-static/
+storybook-static/
 
 # End of https://www.toptal.com/developers/gitignore/api/node,emacs,macos,storybookjs,intellij+all,nextjs
 
