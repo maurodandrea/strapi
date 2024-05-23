@@ -47,7 +47,7 @@ jobs:
 
       - name: Install dependencies
         shell: bash
-        run: npm install --prefix ./apps/nextjs-website #ci
+        run: npm install --production #ci
 
       #- name: GHPages
       #- id: build-publish
