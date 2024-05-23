@@ -47,7 +47,7 @@ jobs:
 
       - name: Install dependencies
         shell: bash
-        working-directory: apps/nextjs-website
+        working-directory: ./apps/nextjs-website
         run: npm install
 
       #- name: GHPages
