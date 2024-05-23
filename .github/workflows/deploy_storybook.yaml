@@ -45,12 +45,9 @@ jobs:
       - name: ellesse
         run: ls
 
-      - name: clear dependencies
-        shell: bash
-        run: rm -rf node_modules package-lock.json
-
       - name: Install dependencies
         shell: bash
+        working-directory: apps/nextjs-website
         run: npm install
 
       #- name: GHPages
