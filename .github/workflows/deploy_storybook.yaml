@@ -8,10 +8,10 @@ on:
       - 'main' # Target branch is main
   workflow_dispatch:
 
-defaults:
-  run:
-    shell: bash
-    working-directory: apps/nextjs-website
+#defaults:
+#  run:
+#    shell: bash
+#    working-directory: apps/nextjs-website
 
 # These permissions are needed to interact with GitHub's OIDC Token endpoint.
 permissions:
@@ -47,7 +47,7 @@ jobs:
 
       - name: Install dependencies
         shell: bash
-        working-directory: ./apps/nextjs-website
+        #working-directory: ./apps/nextjs-website
         run: npm install
 
       #- name: GHPages
@@ -61,6 +61,7 @@ jobs:
 
       - name: Create Storybook
         shell: bash
+        working-directory: ./apps/nextjs-website
         run: npm run build-storybook
 
       #- name: Upload file to folder
